@@ -1,0 +1,23 @@
+# maildir-cleanup settings. Copy to config.toml (gitignored) and edit. Paths are relative to config.toml.
+mail_root = "mail"          # the Maildir clone: <user>/ or <domain>/<user>/Maildir. Override with --mail-root
+db = "data/inv.db"
+rules = "rules.toml"
+
+cutoff_days = 365           # default cutoff: mail older than this is eligible. Override with --cutoff YYYY-MM-DD.
+junk_any_age = true         # delete everything in Junk/Spam folders, not just old mail
+trash_before_cutoff = true  # delete old mail already sitting in Trash
+spam_header_before_cutoff = true  # delete old mail a server spam filter flagged (X-Spam-Flag/Status: Yes)
+
+# Folders never deleted from. "Archive" protects that folder name for everyone; "bob:Taxes" just for bob.
+protected_folders = []
+
+# The model deletes old, unprotected, unlabelled mail whose junk score is at least this (0.85 = 85%).
+# Override per run with --threshold 70. Your own junk/keep labels always win over the score.
+junk_threshold = 0.85
+
+workers = 8                 # scan processes; 0 = CPU count
+
+# Mail whose subject looks like a record (receipt, invoice, statement, order confirmation, tax form) is
+# kept whatever its sender is labelled. The built-in list is in src/maildir_cleanup/config.py
+# (KEEP_SUBJECT_PATTERNS). To replace it, uncomment and edit; [] turns it off. Rerun `analyze` after changing.
+# keep_subject_patterns = ['\breceipt (for|from)\b', '\binvoice\b']

@@ -1,0 +1,25 @@
+[project]
+name = "maildir-cleanup"
+version = "0.1.0"
+description = "Find and list old bulk mail and spam in Maildirs for deletion, with a human-trained classifier"
+authors = [
+    { name = "Scott Serr", email = "scott.serr@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "scikit-learn>=1.5",
+    "textual>=0.80",
+    "zstandard>=0.23",
+]
+
+[project.scripts]
+maildir-cleanup = "maildir_cleanup:main"
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+]

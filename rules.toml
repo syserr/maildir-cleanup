@@ -1,0 +1,12 @@
+# maildir-cleanup rules: optional hard overrides, edited by hand. Usually empty: most decisions come
+# from your labels in training/ and the model. Use a rule only for mail that must always be treated one way.
+# Put remarks in a `note` field rather than comments, in case the file is rewritten by Rules.save().
+#
+# Each [[rule]] matches exactly one of:
+#   address = "deals@store.example"   (sender address)
+#   list_id = "news.store.example"    (List-Id header)
+#   domain  = "store.example"         (sender domain, including subdomains)
+# action:  ad | spam | keep | protect
+# user:    optional; limits the rule to one mailbox. User rules beat global ones.
+# Most specific wins: address, then list_id, then domain.
+
